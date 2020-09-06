@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>展开闭合列表之多个列表</title>
+    <meta charset="utf-8">
+    <style>
+        /* 取消缩进 */
+        dl dd {
+            margin: 0px;
+        }
+
+        dl {
+            height: 20px;
+        }
+
+        .open {
+            /* 显示其他列表 */
+            overflow: visible;
+        }
+
+        .close {
+            /* 隐藏其他列表 */
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //列表展开闭合效果功能
+        function list(node) {
+            var oDl = node.parentNode;
+            var flag = (oDl.className == "open");
+            if (flag) {
+                oDl.className = "close";
+            } else {
+                oDl.className = "open";
+            }
+        }
+    </script>
+    <dl class="close">
+        <dt onclick="list(this)">显示条目一</dt>
+        <dd>展开列表内容1</dd>
+        <dd>展开列表内容1</dd>
+        <dd>展开列表内容1</dd>
+        <dd>展开列表内容1</dd>
+    </dl>
+
+    <dl class="close">
+        <dt onclick="list(this)">显示条目二</dt>
+        <dd>展开列表内容2</dd>
+        <dd>展开列表内容2</dd>
+        <dd>展开列表内容2</dd>
+        <dd>展开列表内容2</dd>
+    </dl>
+
+    <dl class="close">
+        <dt onclick="list(this)">显示条目三</dt>
+        <dd>展开列表内容3</dd>
+        <dd>展开列表内容3</dd>
+        <dd>展开列表内容3</dd>
+        <dd>展开列表内容3</dd>
+    </dl>
+</body>
+
+</html>

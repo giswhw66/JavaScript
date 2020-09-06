@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>展开闭合列表二之优化</title>
+        <meta charset="utf-8">
+        <style>
+            /* 取消缩进 */
+            dl dd{
+                margin: 0px;
+            }
+
+            dl{
+                height: 20px;
+            }
+
+            .open{
+                /* 显示其他列表 */
+                overflow: visible;
+            }
+
+            .close{
+                /* 隐藏其他列表 */
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            //列表展开闭合效果功能
+            function list(){
+                var oDl=document.getElementsByTagName("dl")[0];
+                var flag=(oDl.className=="open");
+                if(flag){
+                    oDl.className="close";
+                }else{
+                    oDl.className="open";
+                }
+            }
+        </script>
+        <dl class="close">
+            <dt onclick="list()">显示条目一</dt>
+            <dd>展开列表内容</dd>
+            <dd>展开列表内容</dd>
+            <dd>展开列表内容</dd>
+            <dd>展开列表内容</dd>
+        </dl>
+    </body>
+</html>
