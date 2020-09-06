@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>创建表格</title>
+    <link rel="stylesheet" href="table.css">
+</head>
+
+<body>
+    <!-- 在页面中创建一个5行6列的表格 -->
+    行数：<input type="number" id="row">
+    列数：<input type="number" id="col">
+    <input type="button" value="创建表格" id="btn1" onclick="createTable()">
+    <hr>
+    <div>
+
+    </div>
+
+    <script>
+        function createTable() {
+            var rowNum=Number.parseInt(document.getElementById("row").value);
+            var colNum=Number.parseInt(document.getElementById("col").value);
+            var oTabNode = document.createElement("table");
+            for (var i = 0; i < rowNum; i++) {
+                var oTrNode = oTabNode.insertRow();
+                for (var j = 0; j < colNum; j++) {
+                    var cTdNode = oTrNode.insertCell();
+                    cTdNode.innerHTML = i + "," + j;
+                }
+            }
+            document.getElementsByTagName("div")[0].appendChild(oTabNode);
+            document.getElementById("btn1").disabled = true;
+        }
+    </script>
+</body>
+
+</html>

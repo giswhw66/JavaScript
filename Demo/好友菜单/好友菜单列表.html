@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <title>好友菜单列表</title>
+    <style type="text/css">
+        /* 
+               对表格框线进行定义
+               以及单元格的框线进行定义
+             */
+        table {
+            border: #8080ff 1px solid;
+            width: 180px;
+        }
+
+        /* 对表格中的ul进行样式定义
+               1.去除无序列表的样式
+               2.将列表的外边距取消 */
+        table ul {
+            list-style: none;
+            margin: 0px;
+            background-color: #23e356;
+            display: none;
+            /* border: green 1px solid; */
+            padding: 0px;
+        }
+
+        table td {
+            border: 1px solid;
+            background-color: #f3c98f;
+        }
+
+        /* 单元格中的超链接样式 */
+        table td a:link,
+        table td a:visited {
+            color: #1f6df1;
+            text-decoration: none;
+        }
+
+        table td a:hover {
+            color: red;
+        }
+
+        /* 预定义样式 */
+        .open {
+            display: block;
+        }
+
+        .close {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="goodlist">
+        <tr>
+            <td>
+                <a href="javascript:void(0)" onclick="list(this)">好友菜单</a>
+                <ul>
+                    <li>一个好友</li>
+                    <li>两个好友</li>
+                    <li>三个好友</li>
+                    <li>四个好友</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="javascript:void(0)" onclick="list(this)">好友菜单</a>
+                <ul>
+                    <li>一个好友</li>
+                    <li>两个好友</li>
+                    <li>三个好友</li>
+                    <li>四个好友</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="javascript:void(0)" onclick="list(this)">好友菜单</a>
+                <ul>
+                    <li>一个好友</li>
+                    <li>两个好友</li>
+                    <li>三个好友</li>
+                    <li>四个好友</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="javascript:void(0)" onclick="list(this)">好友菜单</a>
+                <ul>
+                    <li>一个好友</li>
+                    <li>两个好友</li>
+                    <li>三个好友</li>
+                    <li>四个好友</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function list(node) {
+            //获取a标签的父节点
+            var pNode = node.parentNode;
+            var cTabNode = document.getElementById("goodlist");
+            var colUlNodes = cTabNode.getElementsByTagName("ul");
+            for (var i = 0; i < colUlNodes.length; i++) {
+                //判断ul的父节点是否是点击的a标签的父节点
+                if (colUlNodes[i].parentNode == pNode) {
+                    if (colUlNodes[i].className == "open") {
+                        colUlNodes[i].className = "close";
+                    } else {
+                        colUlNodes[i].className = "open";
+                    }
+                } else {
+                    colUlNodes[i].className = "close";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
