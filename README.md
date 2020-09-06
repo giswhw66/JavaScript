@@ -1,2 +1,2 @@
-# JavaScript-
-JavaScript相关Demo
+# JavaScript
+JavaScript学习总结
