@@ -9,26 +9,70 @@
     <!-- 在页面中创建一个5行6列的表格 -->
     行数：<input type="number" id="row">
     列数：<input type="number" id="col">
-    <input type="button" value="创建表格" id="btn1" onclick="createTable()">
+    <input type="button" value="创建表格" id="btn1" onclick="createTable()"><br>
+    删除行：<input type="number" name="delrow">
+    <input type="button" value="删除行" id="btn1" onclick="delRow()"><br>
+    删除列：<input type="number" name="delcol">
+    <input type="button" value="删除列" id="btn1" onclick="delCol()">
     <hr>
     <div>
 
     </div>
 
     <script>
+        // 创建表格
         function createTable() {
-            var rowNum=Number.parseInt(document.getElementById("row").value);
-            var colNum=Number.parseInt(document.getElementById("col").value);
+            var rowNum = Number.parseInt(document.getElementById("row").value);
+            var colNum = Number.parseInt(document.getElementById("col").value);
             var oTabNode = document.createElement("table");
+            oTabNode.setAttribute("id", "tabid");
             for (var i = 0; i < rowNum; i++) {
+                //添加行
                 var oTrNode = oTabNode.insertRow();
                 for (var j = 0; j < colNum; j++) {
+                    //添加单元格
                     var cTdNode = oTrNode.insertCell();
                     cTdNode.innerHTML = i + "," + j;
                 }
             }
             document.getElementsByTagName("div")[0].appendChild(oTabNode);
             document.getElementById("btn1").disabled = true;
+        }
+
+        // 删除行
+        function delRow() {
+            var oTableNode = document.getElementById("tabid");
+            if (oTableNode == null) {
+                alert("表格不存在！");
+                return;
+            }
+
+            //获取要删除的表格行数
+            var rowIndex = document.getElementsByName("delrow")[0].value;
+            if (rowIndex >= 1 && rowIndex <= oTableNode.rows.length) {
+                oTableNode.deleteRow(rowIndex - 1);
+            } else {
+                alert("删除的行不存在！");
+            }
+        }
+
+        // 删除列：其实就是删除某一行的指定列的单元格
+        function delCol() {
+            var oTableNode = document.getElementById("tabid");
+            if (oTableNode == null) {
+                alert("表格不存在！");
+                return;
+            }
+
+            //获取要删除的表格行数
+            var colIndex = document.getElementsByName("delcol")[0].value;
+            if (colIndex >= 1 && colIndex <= oTableNode.rows[0].cells.length) {
+                for (var i = 0; i < oTableNode.rows.length; i++) {
+                    oTableNode.rows[i].deleteCell(colIndex - 1);
+                }
+            } else {
+                alert("删除的列不存在！");
+            }
         }
     </script>
 </body>
