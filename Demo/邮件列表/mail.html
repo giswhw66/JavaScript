@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <title>邮件列表</title>
+    <link rel="stylesheet" href="table.css">
+    <script type="text/javascript">
+        //行颜色间隔显示功能
+        function trColor() {
+            var oTabNode = document.getElementById("mailtable");
+            //获取行对象
+            var collTrNodes = oTabNode.rows;
+            var clsName; //记录原始样式类名
+            //对所有需要设置背景的行对象进行遍历
+            for (var x = 1; x < collTrNodes.length - 1; x++) {
+                if (x % 2 == 1) {
+                    collTrNodes[x].className = "one";
+                } else {
+                    collTrNodes[x].className = "two";
+                }
+                // 鼠标滑过样式
+                collTrNodes[x].onmouseover = function () {
+                    name = this.className;
+                    this.className = "over";
+                }
+                collTrNodes[x].onmouseout = function () {
+                    this.className = name;
+                }
+            }
+        }
+
+        //复选框的全选
+        function checkAll(node) {
+            //获取所有的mail复选框
+            var collMailNodes = document.getElementsByName("mail");
+            for (var x = 0; x < collMailNodes.length; x++) {
+                collMailNodes[x].checked = node.checked;
+            }
+        }
+
+        // 定义操作复选框按钮的方法
+        function checkAllByBtn(num) {
+            //获取所有的mail复选框
+            var collMailNodes = document.getElementsByName("mail");
+            for (var x = 0; x < collMailNodes.length; x++) {
+                if (num > 1) {
+                    //反选
+                    collMailNodes[x].checked = !collMailNodes[x].checked;
+                } else if (num < 1) {
+                    //全不选
+                    collMailNodes[x].checked = false;
+                } else {
+                    //全选
+                    collMailNodes[x].checked = true;
+                }
+            }
+        }
+
+        //删除所选
+        function delChecked() {
+            if (confirm("是否真的删除？")) {
+                var collMailNodes = document.getElementsByName("mail");
+                for (var x = 0; x < collMailNodes.length; x++) {
+                    if (collMailNodes[x].checked) {
+                        var oTrNode = collMailNodes[x].parentNode.parentNode
+                        oTrNode.parentNode.removeChild(oTrNode);
+                        x--;
+                    }
+                }
+                //重新渲染颜色
+                trColor();
+            }
+        }
+
+        window.onload = function () {
+            trColor();
+        }
+    </script>
+</head>
+
+<body>
+    <table id="mailtable">
+        <tr>
+            <th>
+                <input type="checkbox" name="all" onclick="checkAll(this)">全选
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                邮件名称
+            </th>
+            <th>
+                邮件附属信息
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="mail">
+            </td>
+            <td>
+                张三11
+            </td>
+            <td>
+                我是邮件11
+            </td>
+            <td>
+                我是附属信息11
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="mail">
+            </td>
+            <td>
+                张三12
+            </td>
+            <td>
+                我是邮件12
+            </td>
+            <td>
+                我是附属信息12
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="mail">
+            </td>
+            <td>
+                张三13
+            </td>
+            <td>
+                我是邮件13
+            </td>
+            <td>
+                我是附属信息13
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="mail">
+            </td>
+            <td>
+                张三14
+            </td>
+            <td>
+                我是邮件14
+            </td>
+            <td>
+                我是附属信息14
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="all" onclick="checkAll(this)">全选
+            </td>
+            <td colspan="3" style="text-align: center;">
+                <input type="button" value="全选" onclick="checkAllByBtn(1)">
+                <input type="button" value="取消全选" onclick="checkAllByBtn(0)">
+                <input type="button" value="反选" onclick="checkAllByBtn(2)">
+                <input type="button" value="删除所选附件" onclick="delChecked()">
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

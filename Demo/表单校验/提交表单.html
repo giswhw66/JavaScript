@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>表单校验</title>
+    <script>
+        function mySubmit(){
+            var uForm=document.getElementById("userForm");
+            //表单校验
+            if(document.getElementsByName("user")[0].value==""||document.getElementsByName("pwd")[0].value==""){
+                return false;
+            }else{
+                //提交表单
+                uForm.submit();
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <form id="userForm">
+        用户名称：<input type="text" name="user" onblur="checkUser()">
+        密码：<input type="password" name="pwd"><br>
+        <input type="submit" value="提交表单">
+    </form>
+    <!-- 自定义提交按钮 -->
+    <input type="button" value="我的提交" onclick="mySubmit()">
+</body>
+
+</html>

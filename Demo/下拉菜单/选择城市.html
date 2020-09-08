@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>选择城市</title>
+    <style>
+        select {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function selectCity() {
+            var collCities = [
+                ['选择城市'],
+                ['海淀区', '朝阳区', '东城区', '西城区'],
+                ['济南', '青岛', '威海', '烟台'],
+                ['大连', '葫芦岛', '沈阳', '抚顺'],
+                ['保定', '石家庄', '衡水', '廊坊']
+            ];
+
+            //var arr = {
+            //    "beijing": ['海淀区', '朝阳区', '东城区', '西城区']
+            //};
+
+            //获取两个下拉对象
+            var oSelNode=document.getElementById("selid");
+            var oSubSelNode=document.getElementById("subselid");
+
+            //获取到底选择哪个省
+            var index=oSelNode.selectedIndex;
+            //通过角标到容器中选择对应的城市数组
+            var arrCities=collCities[index];
+            //将此菜单中的内容情况一下
+            for(var x=0;x<oSubSelNode.options.length;x++){
+                oSubSelNode.removeChild(oSubSelNode.options[x]);
+                x--;
+            }
+            //遍历这个数组，并将这个数组的元素对象封装成option对象，添加到子菜单中
+            for(var x=0;x<arrCities.length;x++){
+                var optNode=document.createElement("option");
+                optNode.innerHTML=arrCities[x];
+                oSubSelNode.appendChild(optNode);
+            }
+        }
+    </script>
+    <select id="selid" onchange="selectCity()">
+        <option>选择省市</option>
+        <option>北京</option>
+        <option>山东</option>
+        <option>辽宁</option>
+        <option>河北</option>
+    </select>
+    <select id="subselid">
+        <option value="">选择城市</option>
+    </select>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>带选择框的表格</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <input type="checkbox" name="allitem" onclick="checkAll()" />全选<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="checkbox" name="item" value="4000" />笔记本电脑：4000元<br>
+    <input type="button" value="总金额是：" onclick="getSum()" /><span id="sumid"></span>
+
+    <script>
+        //计算
+        function getSum() {
+            var sum = 0;
+            var collItemNodes = document.getElementsByName("item");
+            for (var x = 0; x < collItemNodes.length; x++) {
+                if (collItemNodes[x].checked) {
+                    sum += parseInt(collItemNodes[x].value);
+                }
+            }
+            document.getElementById("sumid").innerHTML = sum + "元";
+        }
+
+        //全选，全不选
+        function checkAll() {
+            var collItemNodes = document.getElementsByName("item");
+            for (var x = 0; x < collItemNodes.length; x++) {
+                collItemNodes[x].checked = !collItemNodes[x].checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

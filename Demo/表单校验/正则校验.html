@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>表单校验</title>
+    <style rel="stylesheet">
+        .nomal {
+            display: none;
+        }
+
+        .errorMsg {
+            display: block;
+            color: red;
+        }
+    </style>
+    <script>
+        //校验用户名
+        function checkUser() {
+            var user = document.getElementsByName("user")[0].value;
+            var reg=new RegExp("[a-z]{4}",'i');
+            var res=reg.test(user);
+            if(res){
+                alert(true);
+            }else{
+                alert(false);
+            }
+
+            // if (user == "") {
+            //     document.getElementById("nameMsg").className = "errorMsg";
+            // } else {
+            //     document.getElementById("nameMsg").className = "nomal";
+            // }
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        用户名称：<input type="text" name="user" onblur="checkUser()">
+        <span id="nameMsg" class="nomal">用户名不能为空！</span><br>
+        密码：<input type="password" name="pwd"><br>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+table {
+    border: #249bdb 1px solid;
+    width: 500px;
+    border-collapse: collapse;
+}
+
+table td {
+    border: #249bdb 1px solid;
+    padding: 10px;
+}
+
+table th {
+    border: #249bdb 1px solid;
+    padding: 10px;
+    background-color: gray;
+}
+
+/* table th a:link,table th a:visited{
+    color: lightskyblue;
+    text-decoration: none;
+} */
+
+.one {
+    background-color: mediumaquamarine;
+}
+
+.two {
+    background-color: cornflowerblue;
+}
+
+.over {
+    background-color:coral;
+}

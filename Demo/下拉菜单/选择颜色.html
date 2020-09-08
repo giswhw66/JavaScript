@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>选择颜色</title>
+        <style>
+            .clrclass{
+                height: 50px;
+                width: 50px;
+                float: left;
+                margin-right: 30px;
+            }
+            #text{
+                clear: left;
+                width: 200px;
+                margin-top: 20px;
+            }
+            select{
+                width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            function changeColor(node){
+                document.getElementById("text").style.color=node.style.backgroundColor;
+            }
+
+            function changeColor2(){
+                var oSelNode=document.getElementsByName("selectColor")[0];
+                //获取所有的options
+                for(var x=0;x<oSelNode.options.length;x++){
+                    if(oSelNode.options[x].selected){
+                        document.getElementById("text").style.color=oSelNode.options[x].value;
+                    }
+                }
+            }
+
+            function changeColor3(){
+                var oSelNode=document.getElementsByName("selectColor")[1];
+                //获取所有的options
+                for(var x=0;x<oSelNode.options.length;x++){
+                    if(oSelNode.options[x].selected){
+                        document.getElementById("text").style.color=oSelNode.options[x].value;
+                    }
+                }
+            }
+        </script>
+        <div id="clr1" class="clrclass" style="background-color: red;" onclick="changeColor(this)"></div>
+        <div id="clr1" class="clrclass" style="background-color: green;" onclick="changeColor(this)"></div>
+        <div id="clr1" class="clrclass" style="background-color: blue;" onclick="changeColor(this)"></div>
+        <div id="text">
+            需要显示效果的文字<br>
+            需要显示效果的文字<br>
+            需要显示效果的文字<br>
+            需要显示效果的文字<br>
+        </div>
+        <hr>
+        <select name="selectColor" onchange="changeColor2()">
+            <option value="black">选择颜色</option>
+            <option value="red">红色</option>
+            <option value="green">绿色</option>
+            <option value="blue">蓝色</option>
+        </select>
+
+        <select name="selectColor" onchange="changeColor3()">
+            <option value="black" style="background-color: black;"></option>
+            <option value="red" style="background-color: red;"></option>
+            <option value="green" style="background-color: green;"></option>
+            <option value="blue" style="background-color: blue;"></option>
+        </select>
+    </body>
+</html>

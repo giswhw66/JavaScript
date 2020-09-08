@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <title>问卷调查：主要使用radio</title>
+    <style>
+        #contentid {
+            display: none;
+        }
+
+        #no1ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .close {
+            display: none;
+        }
+
+        .open {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        function showResult() {
+            //1.判断是否有答案被选中
+            var oNo1Radio = document.getElementsByName("no1");
+            var flag = false;//判断是否选择答案
+            var selRadioVal;//记录选择答案的值
+            for (var x = 0; x < oNo1Radio.length; x++) {
+                if (oNo1Radio[x].checked) {
+                    flag = true;
+                    selRadioVal = oNo1Radio[x].value;
+                    break;
+                }
+            }
+            if (flag) {
+                if (parseInt(selRadioVal) >= 1 && parseInt(selRadioVal) <= 3) {
+                    document.getElementById("res_1").className = "open";
+                    document.getElementById("res_2").className = "close";
+                } else {
+                    document.getElementById("res_1").className = "close";
+                    document.getElementById("res_2").className = "open";
+                }
+                document.getElementById("errMsg").innerHTML="";
+            } else {
+                //显示提示信息
+                var errMsg=document.getElementById("errMsg");
+                errMsg.innerHTML = "没有任何答案被选中，请重新选择！";
+                errMsg.style.color="red";
+                errMsg.style.fontSize="12px";
+                return;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 单选按钮演示：
+            1、是否参与问卷调查
+            2、性格测试 -->
+
+
+    <h2>欢迎您参加性格测试：</h2>
+    <div>
+        <h3>第一题：</h3>
+        <span>您喜欢的水果是什么？</span>
+        <ul id="no1ul">
+            <li><input type="radio" name="no1" value="1" /> 葡萄</li>
+            <li><input type="radio" name="no1" value="2" />西瓜</li>
+            <li><input type="radio" name="no1" value="3" />苹果</li>
+            <li><input type="radio" name="no1" value="4" />芒果</li>
+            <li><input type="radio" name="no1" value="5" />樱桃</li>
+        </ul>
+    </div>
+    <div>
+        <input type="button" value="查看测试结果" onclick="showResult()">
+        <span id="errMsg"></span>
+        <div id="res_1" class="close">1-3分：您的性格内向并扭曲，建议...</div>
+        <div id="res_2" class="close">4分以上：您的性格外向并分裂，建议...</div>
+    </div>
+    <br>
+
+    <!-- 问卷调查 -->
+    您是否要参与问卷调查
+    <div>
+        <input type="radio" name="wenjuan" value="yes" onclick="showContent(this)" />是
+        <input type="radio" name="wenjuan" value="no" checked onclick="showContent(this)" />否
+    </div>
+    <div id="contentid">
+        问卷调查内容：<br>
+        您的姓名：<input type="text"><br>
+        您的邮箱：<input type="text">
+    </div>
+    <script>
+        function showContent(node) {
+            var oDivNode = document.getElementById("contentid");
+            with(oDivNode.style) {
+                if (node.value == "yes") {
+                    display = "block";
+                } else {
+                    display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
