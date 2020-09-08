@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <title>行颜色间隔显示和高亮及排序</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="table1.css">
+    <style>
+        .one {
+            background-color: green;
+        }
+
+        .two {
+            background-color: indianred;
+        }
+
+        .mouseover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="info">
+        <tr>
+            <th>姓名</th>
+            <th><a href="javascript:void(0)" onclick="sortTable()">年龄</a></th>
+            <th>地址</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>28</td>
+            <td>北京</td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>22</td>
+            <td>上海</td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>23</td>
+            <td>广州</td>
+        </tr>
+        <tr>
+            <td>赵六</td>
+            <td>26</td>
+            <td>深圳</td>
+        </tr>
+    </table>
+    <script>
+        window.onload = function () {
+            var oTable = document.getElementsByTagName("table")[0];
+            for (var i = 0; i < oTable.rows.length; i++) {
+                if (i % 2 == 0) {
+                    oTable.rows[i].className = "two";
+                } else {
+                    oTable.rows[i].className = "one";
+                }
+
+
+                var name; //记录原始行背景颜色
+                //鼠标悬停事件
+                oTable.rows[i].onmouseover = function () {
+                    name = this.className;
+                    this.className = "mouseover";
+                }
+                //鼠标离开事件
+                oTable.rows[i].onmouseout = function () {
+                    this.className = name;
+                }
+            }
+        }
+
+        // 排序：
+        // 1、排序需要数组，获取需要参与排序的行对象数组
+        // 2、对行数组中的每一行的年龄单元格的数据进行比较，并完成行对象在数组中的位置置换
+        // 3、将排好序的数组重新添加回表格
+        var flag = true;
+
+        function sortTable() {
+            var oTabNode = document.getElementById("info");
+            var collTrNodes = oTabNode.rows;
+            //定义一个临时容器，存储需要排序的行对象
+            var trArray = [];
+            for (var x = 1; x < collTrNodes.length; x++) {
+                trArray[x - 1] = collTrNodes[x];
+            }
+            //对临时容器排个序
+            mySort(trArray);
+            if (flag) {
+                //将排完序的行对象添加回表格
+                for (var x = 0; x < trArray.length; x++) {
+                    //oTabNode.childNodes[0].appendChild(trArray[x]);
+                    trArray[x].parentNode.appendChild(trArray[x]);
+                }
+                flag = false;
+            } else {
+                //将排完序的行对象添加回表格
+                for (var x = trArray.length - 1; x >= 0; x--) {
+                    trArray[x].parentNode.appendChild(trArray[x]);
+                }
+                flag = true;
+            }
+        }
+
+        //排序
+        function mySort(arr) {
+            for (var x = 0; x < arr.length - 1; x++) {
+                for (var y = x + 1; y < arr.length; y++) {
+                    //按照年龄排序并转成整数
+                    if (parseInt(arr[x].cells[1].innerHTML) > parseInt(arr[y].cells[1].innerHTML)) {
+                        var temp = arr[x];
+                        arr[x] = arr[y];
+                        arr[y] = temp;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

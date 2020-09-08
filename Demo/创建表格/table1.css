@@ -12,3 +12,8 @@ table th{
     padding: 10px;
     background-color: gray;
 }
+
+table th a:link,table th a:visited{
+    color: lightskyblue;
+    text-decoration: none;
+}
