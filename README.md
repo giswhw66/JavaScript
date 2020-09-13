@@ -1,2 +1,2 @@
 # JavaScript
-JavaScript学习总结
+JavaScript总结
